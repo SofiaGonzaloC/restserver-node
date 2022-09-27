@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 require('dotenv').config();
 
 class Server {
@@ -14,6 +15,10 @@ class Server {
     }
 
     middlewares() {
+
+        // CORS
+        this.app.use( (cors()) )
+
         // Directorio público
         this.app.use( express.static('public') );
     }
@@ -26,13 +31,13 @@ class Server {
         });
 
         this.app.put('/api', (req, res) => {
-            res.json({
+            res.status(500).json({
                 msg: 'put API'
             })
         });
 
         this.app.post('/api', (req, res) => {
-            res.json({
+            res.status(201).json({
                 msg: 'post API'
             })
         });
