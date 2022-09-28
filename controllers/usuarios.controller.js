@@ -1,14 +1,27 @@
 const { response } = require('express');
 
-const getUsuarios = (req, res = response) => {
+const getUsuarios = (req = request, res = response) => {
+
+    const {q, nombre = 'No name', apikey, page, limit} = req.query;
+
     res.json({
-        msg: 'get API - controlador'
+        msg: 'get API - controlador',
+        q,
+        nombre,
+        apikey,
+        page,
+        limit
     })
 }
 
 const putUsuarios = (req, res = response) => {
+
+    // params (url) + id (nombre del param)
+    const id = req.params.id
+
     res.json({
-        msg: 'put API - controlador'
+        msg: 'put API - controlador',
+        id
     })
 }
 
